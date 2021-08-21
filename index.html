@@ -13,74 +13,69 @@
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    html, body{
-      height: 100%;
-    }
-
-    body {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: center;
-      align-items: center;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      background-color: #f5f5f5;
-    }
-
-    .signin {
-      width: 100%;
-      max-width: 330px;
-      padding: 15px;
-      margin: auto;
-    }
-  </style>
+<!-- archivos css de estilo de la plantilla de login -->
+  <link rel="icon" type="image/png" href="img/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/util_login.css">
+	<link rel="stylesheet" type="text/css" href="css/main_login.css">
 </head>
 
 <body class="text-center">
-  <form> 
-    <span>
-        Login
-    </span>
-    <p>Nombre: </p>
-    <div>
-        <input id="user" type="text" name="user" placeholder="Nombre" required>
-        <span></span>
-        <span>
-            <i class="fa fa-user" aria-hidden="true"></i>
-        </span>
-    </div>
-    <p>Contraseña: </p>
-    <div data-validate = "Se requiere la contraseña">
-        <input id="pwd"  type="password" name="pwd" placeholder="Contraseña" required>
-        <span ></span>
-        <span >
-            <i class="fa fa-lock" aria-hidden="true"></i>
-        </span>
-    </div>
-
-    <div >
-        <input type="button"  onclick="validar()" value="Entrar">
-    </div>
-
-    <div >
-            <span >
-                ¿Olvidaste tu
-            </span>
-            <a  href="#">
-                Nombre de Usuario / Contraseña?
-            </a>
-    </div>
-
-    <div >
-        <a  href="#">
-            Crea tu cuenta
-            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-        </a>
-    </div> 
-</form>
-
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+  <!-- comienzo el formulario con el tag form  -->
+				<form class="login100-form">
+          <div class="login100-pic">
+            <img src="img/login.png" alt="IMG">
+          </div>
+					<span class="login100-form-title">
+						Inicio de sesión
+					</span>
+<!-- nombre -->
+					<div class="wrap-input100">
+						<input class="input100" type="text" name="user" id="user" placeholder="Nombre" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+<!-- contraseña -->
+					<div class="wrap-input100">
+						<input class="input100" type="password" name="pwd" id="pwd" placeholder="Contraseña" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+<!-- botón -->
+					<div class="container-login100-form-btn">
+						<input type="button" class="login100-form-btn" onclick="validar()" value="Entrar">
+<!-- uso el onclick para llamar la funcion que valida y pasa a la página index -->
+					</div>
+<!-- cosas extras del inicio de sesión pero que no son funcionales -->
+					<div class="text-center p-t-12">
+						<span class="txt1">
+							¿Olvidaste tu
+						</span>
+						<a class="txt2" href="#">
+							nombre de usuario / contraseña?
+						</a>
+            <a class="txt2" href="#">
+							Crea tu cuenta
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+  <!-- scripts del proyecto -->
   <script src="js/init.js"></script>
-  <script src="js/login.js"></script>
+  <script src="js/login.js"></script> 
 </body>
 </html>

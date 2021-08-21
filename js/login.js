@@ -2,7 +2,7 @@ function validar(){
     let nombre=document.getElementById("user").value;
     let password=document.getElementById("pwd").value;
 
-    if(nombre!=""&&password!=""){
+    if(nombre.trim()!=""&&password.trim()!=""){
         window.location.href = "home.html";
     }else{
         alert("Poner usuario y contraseña")

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <title>eMercado - Todo lo que busques está aquí</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!-- archivos css de estilo de la plantilla de login -->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/util_login.css">
+	<link rel="stylesheet" type="text/css" href="css/main_login.css">
+</head>
+
+<body class="text-center">
+  <!-- comienzo el formulario con el tag form  -->
+  <form> 
+    <span>
+        Login
+    </span>
+    <p>Nombre: </p>
+    <div>
+        <input id="user" type="text" name="user" placeholder="Nombre" required>
+        <span></span>
+        <span>
+            <i class="fa fa-user" aria-hidden="true"></i>
+        </span>
+    </div>
+    <p>Contraseña: </p>
+    <div data-validate = "Se requiere la contraseña">
+        <input id="pwd"  type="password" name="pwd" placeholder="Contraseña" required>
+        <span ></span>
+        <span >
+            <i class="fa fa-lock" aria-hidden="true"></i>
+        </span>
+    </div>
+
+    <div >
+        <input type="button"  onclick="validar()" value="Entrar">
+        <!-- uso el onclick para llamar la funcion que valida y pasa a la página index -->
+    </div>
+
+    <div >
+            <span >
+                ¿Olvidaste tu
+            </span>
+            <a  href="#">
+                Nombre de Usuario / Contraseña?
+            </a>
+    </div>
+
+    <div >
+        <a  href="#">
+            Crea tu cuenta
+            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+        </a>
+    </div> 
+</form>
+<!-- scripts de la plantilla del login -->
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+  <!-- scripts del proyecto -->
+  <script src="js/init.js"></script>
+  <script src="js/login.js"></script> 
+</body>
+</html>

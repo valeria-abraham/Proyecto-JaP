@@ -5,7 +5,7 @@ var currentProductsArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
-
+//función que ordena los productos alfabéticamente o por cantidad de vendidos
 function sortProducts(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -34,16 +34,16 @@ function sortProducts(criteria, array){
 
     return result;
 }
-
+//función que muestra la lista de productos
 function showProductsList(){
 
     let htmlContentToAppend = "";
     for(let i = 0; i < currentProductsArray.length; i++){
         let product = currentProductsArray[i];
-
+//solo muestra si no está fuera del rango de máximo y mínimo o si no se deifinió eso aún
         if (((minCount == undefined) || (minCount != undefined && parseInt(product.soldCount) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.soldCount) <= maxCount))){
-
+//suma a la variable cada producto para poner en el html y mostrarlo, muestra su imagen, descripcion, nombre, cantidad de vendidos, moneda y precio
             htmlContentToAppend += `
             <div class="list-group-item list-group-item-action">
                 <div class="row">
@@ -64,21 +64,21 @@ function showProductsList(){
             `
 
         }
-
+//se "mete" la variable con el contenido en formato html al archivo html
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
 }
-
-function sortAndShowProducts(sortCriteria, ProductsArray){
+// esta funcion utiliza las otras dos, de manera que ordena los productos y después los muestra
+function sortAndShowProducts(sortCriteria, productsArray){
     currentSortCriteria = sortCriteria;
 
-    if(ProductsArray != undefined){
-        currentProductsArray = ProductsArray;
+    if(productsArray != undefined){
+        currentProductsArray = productsArray;
     }
 
     currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
 
-    //Muestro las categorías ordenadas
+    //Muestro los productos ordenados
     showProductsList();
 }
 
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
     document.getElementById("sortByCount").addEventListener("click", function(){
-        sortAndShowProducts(ORDER_BY_PROD_COUNT);
+        sortAndShowProducts(ORDER_BY_SOLD_COUNT);
     });
 
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
@@ -134,6 +134,6 @@ document.addEventListener("DOMContentLoaded", function(e){
             maxCount = undefined;
         }
 
-        showProductList();
+        showProductsList();
     });
 });

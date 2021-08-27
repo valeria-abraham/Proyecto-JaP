@@ -27,7 +27,7 @@
     <main role="main" class="pb-5">
       <div class="text-center p-4">
           <h2>Productos</h2>
-          <p class="lead">Verás aquí todas los productos del sitio.</p>
+          <p class="lead">Verás aquí todos los productos del sitio.</p>
       </div>
       <div class="container">
           <div class="row">
@@ -39,15 +39,15 @@
                       <label class="btn btn-light" id="sortDesc" >
                           <input type="radio" name="options" autocomplete="off">Z-A
                       </label>
-                      <label class="btn btn-light" id="sortByCount" >
-                          <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Cant.
-                      </label>
                       <label class="btn btn-light" id="sortDescCost" >
-                        <input type="radio" name="options" autocomplete="off" checked>$-$$$
-                    </label>
-                    <label class="btn btn-light" id="sortAscCost" >
-                      <input type="radio" name="options" autocomplete="off" checked>$$$-$
-                  </label>
+                        <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-angle-double-up mr-1"></i>$
+                      </label>
+                      <label class="btn btn-light" id="sortAscCost" >
+                        <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-angle-double-down mr-1"></i>$
+                      </label>
+                      <label class="btn btn-light" id="sortByCount" >
+                        <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Vendidos
+                      </label>
                   </div>
               </div>
           </div>
@@ -67,7 +67,7 @@
                   <div class="col-3 p-0">
                     <div class="btn-group" role="group">
                       <button class="btn btn-light btn-block" id="rangeFilterCount" >Filtrar</button>
-                      <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                      <button class="btn btn-link" id="clearRangeFilter">Limpiar</button>
                     </div>
                   </div>
                 </div>

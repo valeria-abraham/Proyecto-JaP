@@ -40,8 +40,26 @@ var getJSONData = function(url){
     });
 }
 
+function showName(){ //función que muestra el nombre en la barra de navegación de la página
+  let htmlContentToAppend=`<a class="py-2 d-none d-md-inline-block" href="my-profile.html">`+localStorage.getItem("Nombre")+`</a>`;
+  if(document.getElementById("mi-nombre")!=null){ //solo muestra si está presente la barra de navegación arriba
+  document.getElementById("mi-nombre").innerHTML=htmlContentToAppend;
+  }
+}
+
+function isConnected(){ //esta función verifica que se haya hecho el inicio de sesión
+  let nombre=localStorage.getItem("Nombre");
+  if(nombre!=undefined && nombre!=null){
+    showName(); //si estoy conectada muestro mi nombre de usuario en la barra de navegación
+  }else if(window.location.pathname.slice(-10)!="index.html"){//veo si no estoy ya en la página de login
+    window.location.href = "index.html"; //si no estoy conectada mando a la página de login
+  }
+
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+  isConnected();
 });

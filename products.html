@@ -12,6 +12,13 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <style>
+      .col{
+        padding: 0px;
+        margin: 0px;
+      }
+
+    </style>
   </head>
   <body>
     <nav class="site-header sticky-top py-1 bg-dark">
@@ -30,48 +37,49 @@
           <p class="lead">Verás aquí todos los productos del sitio.</p>
       </div>
       <div class="container">
-          <div class="row">
-              <div class="col text-right">
-                  <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
-                      <label class="btn btn-light active" id="sortAsc" >
-                          <input type="radio" name="options" autocomplete="off" checked>A-Z
-                      </label>
-                      <label class="btn btn-light" id="sortDesc" >
-                          <input type="radio" name="options" autocomplete="off">Z-A
-                      </label>
-                      <label class="btn btn-light" id="sortDescCost" >
-                        <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-angle-double-up mr-1"></i>$
-                      </label>
-                      <label class="btn btn-light" id="sortAscCost" >
-                        <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-angle-double-down mr-1"></i>$
-                      </label>
-                      <label class="btn btn-light" id="sortByCount" >
-                        <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Vendidos
-                      </label>
-                  </div>
+          <div class="row justify-content-end ">
+            <label class="btn" style="padding-right: 0px; margin-right: 0px;" >
+              <i class="fas fa-search mr-1"></i>
+            </label>
+            <div class="col"style="padding-right: 5px; margin-right: 5px;" >
+              <input class="form-control" type="search" placeholder="Buscar" id="search" style="width: 150px;">
+            </div>
+              <div class="btn-group btn-group-toggle mb-4"  data-toggle="buttons">
+                  <label class="btn btn-light active" id="sortAsc" >
+                      <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-sort-alpha-down mr-1"></i>
+                  </label>
+                  <label class="btn btn-light" id="sortDesc" >
+                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-alpha-down-alt mr-1"></i>
+                  </label>
+                  <label class="btn btn-light" id="sortDescCost" >
+                    <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-angle-double-up mr-1"></i><i class="fas fa-money-bill mr-1"></i>
+                  </label>
+                  <label class="btn btn-light" id="sortAscCost" >
+                    <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-angle-double-down mr-1"></i><i class="fas fa-money-bill mr-1"></i>
+                  </label>
+                  <label class="btn btn-light" id="sortByCount" >
+                    <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Vendidos
+                  </label>
               </div>
-          </div>
-          <div class="row justify-content-end">
-            <div class="col-md-6"></div>
-              <div class="col-md-6 col-sm-12 mb-1 container">
-                <div class="row container p-0 m-0">
                   <div class="col">
-                    <p class="font-weight-normal text-right my-2">Precio</p>
+                    <p class="font-weight-normal text-right my-2" style="padding-left: 5px; margin-left: 5px; padding-right: 5px; margin-right: 5px;">Precio</p>
                   </div>
-                  <div class="col">
-                    <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin" min="0">
+                  <div class="col" >
+                    <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin" min="0" style=" width: 100px;">
                   </div>
-                  <div class="col">
-                    <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax" min="0">
+                  <div class="col" >
+                    <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax" min="0" style="width: 100px;">
                   </div>
-                  <div class="col-3 p-0">
-                    <div class="btn-group" role="group">
-                      <button class="btn btn-light btn-block" id="rangeFilterCount" >Filtrar</button>
-                      <button class="btn btn-link" id="clearRangeFilter">Limpiar</button>
+                  <div class="col p-0">
+                    <div class="btn-group btn-group-toggle mb-4" role="group">
+                      <label class="btn btn-light" id="rangeFilterCount" >
+                        <input type="radio" name="options" autocomplete="off">Filtrar
+                      </label>
+                      <label class="btn btn-light" id="clearRangeFilter" >
+                        <input type="radio" name="options" autocomplete="off">Limpiar
+                      </label>
                     </div>
                   </div>
-                </div>
-              </div>
           </div>
           <div class="row">
               <div class="list-group" id="cat-list-container">
@@ -93,6 +101,5 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/products.js"></script>
-    <script src="js/barra-navegador.js"></script>
   </body>
 </html>

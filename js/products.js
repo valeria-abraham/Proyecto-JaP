@@ -7,6 +7,8 @@ var currentProductsArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
+var filteredList=[];
+
 //función que ordena los productos alfabéticamente, por cantidad de vendidos (relevancia), o por precio
 function sortProducts(criteria, array){
     let result = [];
@@ -57,7 +59,7 @@ function sortProducts(criteria, array){
     return result;
 }
 //función que muestra la lista de productos
-function showProductsList(){
+function showProductsList(currentProductsArray){
 
     let htmlContentToAppend = "";
     for(let i = 0; i < currentProductsArray.length; i++){
@@ -101,7 +103,15 @@ function sortAndShowProducts(sortCriteria, productsArray){
     currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
 
     //Muestro los productos ordenados
-    showProductsList();
+    showProductsList(currentProductsArray);
+}
+
+function search(){ //es la función para hacer la búsqueda en la barra
+    var textInput=document.getElementById("search").value; //obtengo el texto introducido
+    filteredList=currentProductsArray.filter(function(product){ //uso la función que filtra automáticamente y selecciono de dónde quiero buscar los caracteres introducidos
+        return product.name.toLowerCase().indexOf(textInput.toLowerCase())>-1 || product.description.toLowerCase().indexOf(textInput.toLowerCase())>-1;
+    })
+    showProductsList(filteredList); // muestro los productos que corresponden a la búsqueda
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -141,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         minCount = undefined;
         maxCount = undefined;
 
-        showProductsList();
+        showProductsList(currentProductsArray);
     });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
@@ -164,6 +174,9 @@ document.addEventListener("DOMContentLoaded", function(e){
             maxCount = undefined;
         }
 
-        showProductsList();
+        showProductsList(currentProductsArray);
     });
+    document.getElementById("search").addEventListener('keyup',function(){ 
+        search(); //llamo a la función de búsqueda
+    })
 });

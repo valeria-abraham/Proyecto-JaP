@@ -12,10 +12,9 @@ var filteredList=[];
 //función que ordena los productos alfabéticamente, por cantidad de vendidos (relevancia), o por precio
 function sortProducts(criteria, array){
     let result = [];
-    if (criteria === ORDER_ASC_BY_NAME)
-    {
-// devuelve 1 si a es mayor que b, -1 si es menor, 0 si son iguales
-// si es positivo la función sort coloca a "a" después de "b", si es negativo lo coloca antes y si es 0 los deja en las posiciones que ya estaban
+    // la función dentro de sort devuelve 1 si a es mayor que b, -1 si es menor, 0 si son iguales
+    // si es positivo la función sort coloca a "a" después de "b", si es negativo lo coloca antes y si es 0 los deja en las posiciones que ya estaban
+    if (criteria === ORDER_ASC_BY_NAME){
         result = array.sort(function(a, b) { 
             if ( a.name < b.name ){ return -1; }
             if ( a.name > b.name ){ return 1; }
@@ -60,7 +59,6 @@ function sortProducts(criteria, array){
 }
 //función que muestra la lista de productos
 function showProductsList(currentProductsArray){
-
     let htmlContentToAppend = "";
     for(let i = 0; i < currentProductsArray.length; i++){
         let product = currentProductsArray[i];
@@ -69,7 +67,7 @@ function showProductsList(currentProductsArray){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
 //suma a la variable cada producto para poner en el html y mostrarlo, muestra su imagen, descripcion, nombre, cantidad de vendidos, moneda y precio
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action">
+            <a  href="product-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
                         <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
@@ -84,15 +82,14 @@ function showProductsList(currentProductsArray){
     
                     </div>
                 </div>
-            </div>
-            `
-
+            </a>`
         }
 //se "mete" la variable con el contenido en formato html al archivo html
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
 }
-// esta funcion utiliza las otras dos, de manera que ordena los productos y después los muestra
+
+//función que utiliza las otras dos, de manera que ordena los productos y después los muestra
 function sortAndShowProducts(sortCriteria, productsArray){
     currentSortCriteria = sortCriteria;
 
@@ -177,6 +174,6 @@ document.addEventListener("DOMContentLoaded", function(e){
         showProductsList(currentProductsArray);
     });
     document.getElementById("search").addEventListener('keyup',function(){ 
-        search(); //llamo a la función de búsqueda
+        search(); //llamo a la función de búsqueda al escribir algo en la barra de búsqueda
     })
 });

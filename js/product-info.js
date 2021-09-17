@@ -8,8 +8,7 @@ const ORDER_ASC_BY_DATE= "ANTES";
 const ORDER_DESC_BY_DATE="DESPUES";
 var currentSortCriteria = undefined;
 
-//función que ordena los comentarios por puntuación o fecha
-function sortComments(criteria, array){
+function sortComments(criteria, array){ //función que ordena los comentarios por puntuación o fecha
   let result = [];
   // la función dentro de sort devuelve 1 si a es mayor que b, -1 si es menor, 0 si son iguales
   // si es positivo la función sort coloca a "a" después de "b", si es negativo lo coloca antes y si es 0 los deja en las posiciones que ya estaban
@@ -109,6 +108,31 @@ function sortAndShowComments(sortCriteria, commentsArray){
   showComments(currentComments);
 }
 
+function addComments(commentsArray){
+  let date= new Date();
+  let formatDate= date.getFullYear().toString()+"-"
+  +(date.getMonth()+1).toString().padStart(2,'0')+"-"+
+  date.getDate().toString().padStart(1,'0')+" "+date.getHours().toString().padStart(2,'0')+":"
+  +date.getMinutes().toString().padStart(2,'0')+":"+date.getSeconds().toString().padStart(2,'0');
+  let message=document.getElementById("textarea").value;
+  let score=1;
+  var selected = document.getElementsByName("estrellas");
+  for(i = 0; i < selected.length; i++) {
+      if(selected[i].checked){
+      score=selected[i].value;
+  }}
+  if(message.trim()!=""){ // Para que no admita comentarios vacíos
+    comment={
+      description: message,
+      dateTime: formatDate,
+      score: score,
+      user: localStorage.getItem("Nombre")
+    }
+    currentComments.push(comment)
+    sortAndShowComments(ORDER_ASC_BY_DATE,currentComments);
+  }
+}
+
 function showProductInfo(productInfo){
   let htmlNombre = `<h1 style="font-weight:800; text-align: center;">`+ productInfo.name +`</h1>`;
   document.getElementById("product-name").innerHTML = htmlNombre;
@@ -189,5 +213,18 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
     document.getElementById("sortDescTime").addEventListener("click", function(){
       sortAndShowComments(ORDER_DESC_BY_DATE,currentComments);
+    });
+    document.getElementById("submit-comment").addEventListener("click", function(){
+      addComments(currentComments);
+      document.getElementById("textarea").value=""; // Para limpiar donde se escribe
+      var ele = document.getElementsByName("estrellas"); // Para limpiar la selección de puntos
+      for(var i=0;i<ele.length;i++)
+        ele[i].checked = false;
+    });
+    document.getElementById("clean-comment").addEventListener("click", function(){
+      document.getElementById("textarea").value="";
+      var ele = document.getElementsByName("estrellas"); // Para limpiar la selección de puntos
+      for(var i=0;i<ele.length;i++)
+        ele[i].checked = false;
     });
 });

@@ -28,19 +28,20 @@
     </div>
   </nav>
   <div class="container">
-    <!-- Nombre del producto -->
     <div class="row mt-5">
-      <div class="col-12" id="product-name">
-      </div>
+      <!-- Nombre del producto -->
+      <div class="col-12" id="product-name"></div>
+      <!-- Fin nombre del producto -->
     </div>
-    <!-- Imágenes en carousel -->
     <div class="row mt-5">
+      <!-- Imágenes en carousel -->
       <div class="col-6">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators" id="carousel-list"></ol>
           <div id="carousel-images-in"></div>
         </div>
       </div>
+      <!-- Fin imágenes en carousel -->
       <!-- Información del producto -->
       <div class="col-6">
         <div class="card mb-3" style="max-width: 100%;">
@@ -48,11 +49,13 @@
           </div>
         </div>
       </div>
+      <!-- Fin información del producto -->
     </div>
-    <!-- Botones de ordenamiento de comentarios -->
+    <!-- Contenedor de botones de comentarios -->
     <div class="row mt-1" > 
       <div class="col-7"></div>
       <div class="col-4">
+        <!-- Botones de ordenamiento de comentarios -->
         <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
           <label class="btn btn-light" id="sortDescScore" >
             <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-angle-double-up mr-1 ml-1 "><i class="fa fa-car checkedred mr-1 ml-1" ></i></i>
@@ -67,14 +70,16 @@
             <input type="radio" name="options" autocomplete="off" checked><i class="fas fa-angle-double-down mr-1 ml-1 "><i class="fa fa-clock checkedred mr-1 ml-1" ></i></i>
           </label>
         </div>
+        <!-- Fin botones de ordenamiento de comentarios -->
       </div>
       <div class="col-1"></div>
     </div>
-    <!-- Comentarios -->
+    <!-- Contenedor de cosas de comentarios -->
     <div class="row md-1">
       <div class="col-1"></div>
-      <div class="col-10" id="comment">
-      </div>
+      <!-- Comentarios -->
+      <div class="col-10" id="comment"></div>
+      <!-- Fin comentarios -->
       <div class="col-1"></div>
     </div>
     <!-- Dejar comentario -->
@@ -98,6 +103,7 @@
                 <div class="col-4">
                   <form id="formulario">
                     <p class="ml-2 clasificacion"> 
+                      <!-- Creé las clases clasificacion y auto para mostrar personalizados los botones y los íconos -->
                       <input id="radio1" type="radio" name="estrellas" value="5"><!--
                       --><label for="radio1" class="auto"><i class="fa fa-car mr-1"></i></label><!--
                       --><input id="radio2" type="radio" name="estrellas" value="4"><!--
@@ -122,6 +128,7 @@
       </div>
       <div class="col-1"></div>
     </div>
+    <!-- Fin dejar comentario -->
   </div>
   <footer class="text-muted">
     <div class="container">

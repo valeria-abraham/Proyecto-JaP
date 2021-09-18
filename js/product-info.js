@@ -66,7 +66,7 @@ function showStars(n,max){
   }
   for(let i=number+1;i<=m;i++){ 
     // cargo a htmlStars la cantidad de estrellas sin pintar 
-    htmlStars+=`<span class="fa fa-car"></span>`
+    htmlStars+=`<span class="fa fa-car auto"></span>`
   }
   return htmlStars; // Devuelvo la variable con el código HTML cargado
 }

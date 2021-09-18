@@ -148,11 +148,9 @@ a.custom-card:hover {
 input[type="radio"] {
   display: none;
 }
-
 .auto {
 color: grey;
 }
-
 .clasificacion {
 direction: rtl;
 unicode-bidi: bidi-override;

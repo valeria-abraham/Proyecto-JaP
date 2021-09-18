@@ -142,6 +142,9 @@ a.custom-card:hover {
 .checkedred {
   color: tomato;
 }
+.checkedgrey {
+  color: grey;
+}
 .linked-card{
   text-decoration: none;
 }

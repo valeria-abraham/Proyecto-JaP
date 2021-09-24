@@ -184,3 +184,20 @@ a.badge-tomato:focus{outline:0;box-shadow:0 0 0 .2rem rgba(23,162,184,.5)}
 .btn-tomato:not(:disabled):not(.disabled).active:focus,
 .btn-tomato:not(:disabled):not(.disabled):active:focus,.show>
 .btn-tomato.dropdown-toggle:focus{box-shadow:0 0 0 .2rem rgba(130,138,145,.5)}
+
+.btn-non-format{color:#fff;background-color:#6c757d;}
+.btn-non-format:hover{color:#fff;background-color:#6c757d;border-color:#4e555b}
+.btn-non-format.focus,.btn-non-format:focus{box-shadow:0 0 0 .2rem rgba(130,138,145,.5)}
+.btn-non-format.disabled,
+.btn-non-format:disabled{color:#fff;background-color:#6c757d;border-color:#6c757d}
+.btn-non-format:not(:disabled):not(.disabled).active,
+.btn-non-format:not(:disabled):not(.disabled):active,.show>
+.btn-non-format.dropdown-toggle{color:#fff;background-color:#545b62;border-color:#4e555b}
+.btn-non-format:not(:disabled):not(.disabled).active:focus,
+.btn-non-format:not(:disabled):not(.disabled):active:focus,.show>
+.btn-non-format.dropdown-toggle:focus{box-shadow:0 0 0 .2rem rgba(130,138,145,.5)}
+
+.dropdown-menu-dark{position:absolute;top:100%;left:0;z-index:1000;display:none;float:left;
+  min-width:10rem;padding:.5rem 0;margin:.125rem 0 0;font-size:1rem;color:#fff;
+  text-align:left;list-style:none;background-color:#6c757d;background-clip:padding-box;
+  border:1px solid rgba(0,0,0,.15);border-radius:.25rem}

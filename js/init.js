@@ -41,7 +41,19 @@ var getJSONData = function(url){
 }
 
 function showName(){ //función que muestra el nombre en la barra de navegación de la página
-  let htmlContentToAppend=`<a class="py-2 d-none d-md-inline-block" href="my-profile.html">`+localStorage.getItem("Nombre")+`</a>`;
+  // let htmlContentToAppend=`<a class="py-2 d-none d-md-inline-block" href="my-profile.html">`+localStorage.getItem("Nombre")+`</a>`;
+  let htmlContentToAppend=`<div class="dropdown">
+  <a class="py-2 d-none d-md-inline-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    `+localStorage.getItem("Nombre")+`
+  </a>
+  <div class="dropdown-menu dropdown-menu-dark " aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" style="color:#fff" href="my-profile.html">Mi perfil</a>
+    <a class="dropdown-item" style="color:#fff" href="cart.html">Mi carrito</a>
+    <div class="dropdown-divider"></div>
+    <button class="dropdown-item btn-tomato" type="button" id="disconnect">Cerrar sesión</button>
+  </div>
+</div>`;
+  
   if(document.getElementById("mi-nombre")!=null){ //solo muestra si está presente la barra de navegación arriba
   document.getElementById("mi-nombre").innerHTML=htmlContentToAppend;
   }

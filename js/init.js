@@ -50,7 +50,7 @@ function showName(){ //función que muestra el nombre en la barra de navegación
     <a class="dropdown-item" style="color:#fff" href="my-profile.html">Mi perfil</a>
     <a class="dropdown-item" style="color:#fff" href="cart.html">Mi carrito</a>
     <div class="dropdown-divider"></div>
-    <button class="dropdown-item btn-tomato" type="button" id="disconnect">Cerrar sesión</button>
+    <button class="dropdown-item btn-tomato" type="button" onclick="logOut()">Cerrar sesión</button>
   </div>
 </div>`;
   
@@ -61,12 +61,16 @@ function showName(){ //función que muestra el nombre en la barra de navegación
 
 function isConnected(){ //esta función verifica que se haya hecho el inicio de sesión
   let nombre=localStorage.getItem("Nombre");
-  if(nombre!=undefined && nombre!=null){
+  if(nombre!=undefined || nombre!=null){
     showName(); //si estoy conectada muestro mi nombre de usuario en la barra de navegación
   }else if(window.location.pathname.slice(-10)!="index.html"){//veo si no estoy ya en la página de login
     window.location.href = "index.html"; //si no estoy conectada mando a la página de login
   }
+}
 
+function logOut(){
+  localStorage.clear()
+  window.location.href = "index.html"
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de

@@ -241,14 +241,14 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok"){
             currentProduct=resultObj.data // Cargamos la variable con el producto principal de la página
             showProductInfo(currentProduct) // muestro la información del producto
+            getJSONData(PRODUCTS_URL).then(function(resultObj){ // obtengo el json del producto
+              if (resultObj.status === "ok"){
+                showRelatedProducts(resultObj.data,currentProduct) // muestro la información del producto relacionado
+                // llamo a la función con el json obtenido de PRODUCTS_URL y con el producto principal de esta página
+              }
+            });
         }
     });
-    getJSONData(PRODUCTS_URL).then(function(resultObj){ // obtengo el json del producto
-      if (resultObj.status === "ok"){
-        showRelatedProducts(resultObj.data,currentProduct) // muestro la información del producto relacionado
-        // llamo a la función con el json obtenido de PRODUCTS_URL y con el producto principal de esta página
-      }
-  });
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){ // obtengo el json de los comentarios
         if (resultObj.status === "ok"){
           currentComments=resultObj.data; // asigno el currentComments para usarlo después si hay más añadidos en la página

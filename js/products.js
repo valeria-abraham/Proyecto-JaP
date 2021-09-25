@@ -67,7 +67,7 @@ function showProductsList(currentProductsArray){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
 //suma a la variable cada producto para poner en el html y mostrarlo, muestra su imagen, descripcion, nombre, cantidad de vendidos, moneda y precio
             htmlContentToAppend += `
-            <a  href="product-info.html" class="list-group-item list-group-item-action">
+            <a  href="product-info.html" class="list-group-item list-group-item-action" style="border:1px solid #fff">
                 <div class="row">
                     <div class="col-3">
                         <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
@@ -83,6 +83,9 @@ function showProductsList(currentProductsArray){
                     </div>
                 </div>
             </a>`
+            if(i<currentProductsArray.length-1){
+                htmlContentToAppend+=`<div class="dropdown-divider"></div>`;
+              }
         }
 //se "mete" la variable con el contenido en formato html al archivo html
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;

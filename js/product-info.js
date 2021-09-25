@@ -6,6 +6,7 @@ var currentSortCriteria = undefined;
 // ^^ Variables para orden de comentarios 
 var currentComments=[];
 // ^^ Arreglo para cargar los comentarios viejos más los nuevos 
+var currentProduct=[];
 
 //función que ordena los comentarios por puntuación o fecha
 function sortComments(criteria, array){ 
@@ -156,7 +157,7 @@ function showProductInfo(productInfo){
       <div class="col-12">
         <div class="row">
           <div class="col-5">
-            <p class="badge badge-tomato" style="font-size:1.3em">`+productInfo.currency+` `+productInfo.cost+`</p>
+            <a class="badge badge-tomato" style="font-size:1.3em" href="cart.html">`+productInfo.currency+` `+productInfo.cost+`</a>
           </div>
           <div class="col-3" style="text-align:right">
             <small class="text-muted"> Vendidos: `+productInfo.soldCount+` </small>
@@ -203,12 +204,49 @@ function showProductInfo(productInfo){
   document.getElementById("carousel-images-in").innerHTML=htmlImages; // Cargo el resto
 }
 
+// función que muestra la información de los productos relacionados del producto principal de la pagina
+//tomo related como el array del producto relacionado y product el del producto principal de la página
+function showRelatedProducts(relatedArray,product){ 
+  let html = "";
+  for(i = 0; i < product.relatedProducts.length; i++){
+    let index = product.relatedProducts[i];
+    let related = relatedArray[index];
+    html+=`
+    <a  href="product-info.html" class="list-group-item list-group-item-action" style="border:1px solid #fff">
+      <div class="row">
+          <div class="col-3">
+              <img src="`+related.imgSrc+`" alt="`+related.description+`" class="img-thumbnail">
+          </div>
+          <div class="col-9">
+              <div class="d-flex w-100 justify-content-between">
+                  <h4 class="mb-1">`+related.name+`</h4>
+                  <small class="text-muted">`+related.soldCount+` vendidos</small>
+              </div>
+              <small class="text-muted">`+related.description+`</small>
+              <p>`+related.currency+related.cost+`</p>
+          </div>
+      </div>
+    </a>
+    `
+    if(i<product.relatedProducts.length-1){
+      html+=`<div class="dropdown-divider"></div>`;
+    }
+  }
+  document.getElementById("related-products").innerHTML=html;
+}
+
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){ // obtengo el json del producto
         if (resultObj.status === "ok"){
-            showProductInfo(resultObj.data) // muestro la información del producto
+            currentProduct=resultObj.data
+            showProductInfo(currentProduct) // muestro la información del producto
         }
     });
+    getJSONData(PRODUCTS_URL).then(function(resultObj){ // obtengo el json del producto
+      if (resultObj.status === "ok"){
+        showRelatedProducts(resultObj.data,currentProduct) // muestro la información del producto relacionado
+      }
+  });
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){ // obtengo el json de los comentarios
         if (resultObj.status === "ok"){
           currentComments=resultObj.data; // asigno el currentComments para usarlo después si hay más añadidos en la página

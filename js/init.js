@@ -68,9 +68,9 @@ function isConnected(){ //esta función verifica que se haya hecho el inicio de 
   }
 }
 
-function logOut(){
-  localStorage.clear()
-  window.location.href = "index.html"
+function logOut(){ // función que desconecta al usuario borrando toda la información del localStorage
+  localStorage.clear() // limpiamos el localStorage
+  window.location.href = "index.html" // mandamos devuelta a la página del login
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de

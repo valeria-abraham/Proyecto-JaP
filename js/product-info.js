@@ -208,9 +208,10 @@ function showProductInfo(productInfo){
 //tomo related como el array del producto relacionado y product el del producto principal de la página
 function showRelatedProducts(relatedArray,product){ 
   let html = "";
-  for(i = 0; i < product.relatedProducts.length; i++){
-    let index = product.relatedProducts[i];
-    let related = relatedArray[index];
+  // Vamos desde 0 hasta la longitud del array de los productos relacionados al principal
+  for(i = 0; i < product.relatedProducts.length; i++){ 
+    let index = product.relatedProducts[i]; // Obtenemos el índice de uno de los productos relacionados 
+    let related = relatedArray[index]; // Llamamos al producto relacionado desde el array de todos los productos (relatedArray)
     html+=`
     <a  href="product-info.html" class="list-group-item list-group-item-action" style="border:1px solid #fff">
       <div class="row">
@@ -223,28 +224,29 @@ function showRelatedProducts(relatedArray,product){
                   <small class="text-muted">`+related.soldCount+` vendidos</small>
               </div>
               <small class="text-muted">`+related.description+`</small>
-              <p>`+related.currency+related.cost+`</p>
+              <p>`+related.currency+` `+related.cost+`</p>
           </div>
       </div>
     </a>
     `
-    if(i<product.relatedProducts.length-1){
+    if(i<product.relatedProducts.length-1){ // Para que se separen por una línea y quede lindo
       html+=`<div class="dropdown-divider"></div>`;
     }
   }
-  document.getElementById("related-products").innerHTML=html;
+  document.getElementById("related-products").innerHTML=html; // Cargamos al código html
 }
 
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){ // obtengo el json del producto
         if (resultObj.status === "ok"){
-            currentProduct=resultObj.data
+            currentProduct=resultObj.data // Cargamos la variable con el producto principal de la página
             showProductInfo(currentProduct) // muestro la información del producto
         }
     });
     getJSONData(PRODUCTS_URL).then(function(resultObj){ // obtengo el json del producto
       if (resultObj.status === "ok"){
         showRelatedProducts(resultObj.data,currentProduct) // muestro la información del producto relacionado
+        // llamo a la función con el json obtenido de PRODUCTS_URL y con el producto principal de esta página
       }
   });
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){ // obtengo el json de los comentarios

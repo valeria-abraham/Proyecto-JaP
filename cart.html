@@ -44,15 +44,53 @@
     </div>
   </nav>
   <div class="container">  
-    <h1 style="font-weight:800; text-align: center;"class="mt-5">Carrito:</h1> 
+    <!-- Títulos -->
+    <h1 style="font-weight:800; text-align: center;"class="mt-5">Carrito de compras</h1> 
+    <h4 class="mt-1">Artículos:</h4> 
+    <!-- Artículos -->
     <div class="row">
       <div class="col">
         <div id="cart" style="margin-left: auto;margin-right: auto;"></div>
       </div>
     </div>
     <div class="dropdown-divider-cart-final"></div>
-    
-  </div>
+    <!-- Tipo de envío -->
+    <h4 class="mt-4">Tipo de envío:</h4>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10" style="text-align: center; ">
+        <div class="btn-group btn-group-toggle mb-2" data-toggle="buttons">
+          <label class="btn btn-tomato2" id="tipo-envio-p" >
+            <input type="radio" name="options" autocomplete="off">Premium 2 a 5 días (15%)
+          </label>
+          <label class="btn btn-tomato2" id="tipo-envio-e" >
+            <input type="radio" name="options" autocomplete="off">Express 5 a 8 días (7%)
+          </label>
+          <label class="btn btn-tomato2" id="tipo-envio-s" >
+            <input type="radio" name="options" autocomplete="off">Standard 12 a 15 días (5%)
+          </label>
+        </div>
+      </div>  
+      <div class="col-1"></div>
+    </div> 
+    <!-- Dirección -->
+    <h4>Dirección de envío:</h4> 
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="calle">Calle</span>
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="calle">
+      <span class="input-group-text ml-5" id="num-puerta" >Número</span>
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="num-puerta">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="esq">Esquina</span>
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="esq">
+    </div>
+    <!-- Total -->
+    <h4>Desglose final:</h4>
+    <div id="desglose"></div>
+    <!-- Forma de pago -->
+    <h4>Forma de pago:</h4>
+  </div> 
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

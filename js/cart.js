@@ -5,10 +5,12 @@ function showCarrito(carrito) {
         let art = carrito.articles[i];
         let ex = exchange(art.currency,'UYU',parseFloat(art.unitCost))
         html += `
-        <a href="product-info.html" class="list-group-item list-group-item-action mt-2" style="border:1px solid white">
+        <div class="list-group-item list-group-item-action mt-2" style="border:1px solid white">
             <div class="row" >
                 <div class="col-2">
-                <img class="d-block rounded img-carrito" src=`+art.src+`>
+                    <a href="product-info.html">
+                        <img class="d-block rounded img-carrito" src=`+art.src+`>
+                    </a>
                 </div>
                 <div class="col-4"style="text-align:left;">
                     <h5>` + art.name + `</h5>
@@ -31,7 +33,7 @@ function showCarrito(carrito) {
                     </div>
                 </div>
             </div>
-        </a>`
+        </div>`
         if(i<carrito.articles.length-1){ // Para que se separen por una línea y quede lindo
             html+=`<div class="dropdown-divider-cart"></div>`;
           }

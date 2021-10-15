@@ -54,25 +54,6 @@
       </div>
     </div>
     <div class="dropdown-divider-cart-final"></div>
-    <!-- Tipo de envío -->
-    <h4 class="mt-4">Tipo de envío:</h4>
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10" style="text-align: center; ">
-        <div class="btn-group btn-group-toggle mb-2" data-toggle="buttons">
-          <label class="btn btn-tomato2" id="tipo-envio-p" >
-            <input type="radio" name="options" autocomplete="off">Premium 2 a 5 días (15%)
-          </label>
-          <label class="btn btn-tomato2" id="tipo-envio-e" >
-            <input type="radio" name="options" autocomplete="off">Express 5 a 8 días (7%)
-          </label>
-          <label class="btn btn-tomato2" id="tipo-envio-s" >
-            <input type="radio" name="options" autocomplete="off">Standard 12 a 15 días (5%)
-          </label>
-        </div>
-      </div>  
-      <div class="col-1"></div>
-    </div> 
     <!-- Dirección -->
     <h4>Dirección de envío:</h4> 
     <div class="input-group mb-3">
@@ -85,11 +66,86 @@
       <span class="input-group-text" id="esq">Esquina</span>
       <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="esq">
     </div>
+    <!-- Tipo de envío -->
+    <div class="dropdown-divider-cart"></div>
+    <h4 class="mt-4">Tipo de envío:</h4>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10" style="text-align: center; ">
+        <div class="btn-group btn-group-toggle mb-2" data-toggle="buttons">
+          <label class="btn btn-tomato2" id="tipo-envio-p" >
+            <input type="radio" name="envio-precio" autocomplete="off" value="0.15">Premium 2 a 5 días (15%)
+          </label>
+          <label class="btn btn-tomato2" id="tipo-envio-e" >
+            <input type="radio" name="envio-precio" autocomplete="off" value="0.07">Express 5 a 8 días (7%)
+          </label>
+          <label class="btn btn-tomato2" id="tipo-envio-s" >
+            <input type="radio" name="envio-precio" autocomplete="off" value="0.05">Standard 12 a 15 días (5%)
+          </label>
+        </div>
+      </div>  
+      <div class="col-1"></div>
+    </div> 
     <!-- Total -->
+    <div class="dropdown-divider-cart"></div>
     <h4>Desglose final:</h4>
-    <div id="desglose"></div>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <div class="card" style="width: 100%;">
+          <div class="list-group list-group-flush">
+            <div class="list-group-item">
+              <div class="row">
+                <div class="col-7">
+                  <p class="mt-2" style="text-align:start; font-size: 1.5em;">Costo de los artículos</p>
+                </div>
+                <div class="col-2" id="mon"></div>
+                <div class="col-3" >
+                  <div class="justify-content-end" id="tot-art" style="text-align: right;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="row">
+                <div class="col-7">
+                  <p class="mt-2" style="text-align:start; font-size: 1.5em;">Costo de envío</p>
+                </div>
+                <div class="col-2" id="mone"></div>
+                <div class="col-3">
+                  <div class="justify-content-end"id="tot-envio"></div>
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="row">
+                <div class="col-7">
+                  <p class="mt-2" style="text-align:start; font-size: 1.5em; font-weight:600;">Costo total</p>
+                </div>
+                <div class="col-2" id="mont"></div>
+                <div class="col-3">
+                  <div class="justify-content-end" id="total-total"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
     <!-- Forma de pago -->
+    <div class="dropdown-divider-cart"></div>
     <h4>Forma de pago:</h4>
+    <div class="row ml-5">
+      <p>No se ha seleccionado una forma de pago.</p>
+      <a href="" class="ml-2">Seleccionar.</a>
+    </div>
+    <div class="row mb-4">
+      <div class="col-4"></div>
+      <div class="col-4" style="text-align: center;">
+        <button type="button" class="btn btn-tomato" id="comprar">Finalizar compra</button>
+      </div>
+      <div class="col-4"></div>
+    </div>
   </div> 
   <div id="spinner-wrapper">
     <div class="lds-ring">

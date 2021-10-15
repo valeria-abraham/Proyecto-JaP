@@ -1,9 +1,11 @@
+const MONEDA = 'UYU';
+let carrito = [];
 
 function showCarrito(carrito) {
     let html = "";
     for (let i = 0; i < carrito.articles.length; i++) {
         let art = carrito.articles[i];
-        let ex = exchange(art.currency,'UYU',parseFloat(art.unitCost))
+        let ex = exchange(art.currency,MONEDA,parseFloat(art.unitCost))
         html += `
         <div class="list-group-item list-group-item-action mt-2" style="border:1px solid white">
             <div class="row" >
@@ -20,7 +22,7 @@ function showCarrito(carrito) {
                     <div class="d-flex w-100 justify-content-between">
                         <span> 
                             Cantidad: 
-                            <input class="input-" type="number" name="` + i + `" value="` + art.count + `" min=1>
+                            <input class="input-" type="number" id="` + i + `" value="` + art.count + `" min = 1 onchange="update(`+i+`)">
                         </span>
                     </div>
                 </div>
@@ -53,19 +55,52 @@ function exchange(from,to,amount){
     return result;
 }
 
-function subtotalArt(cost,art){ // función que toma el precio, cantidad e id del articulo para calcular el subtotal 
-    let html = ""; 
-    let idhtml = "subtotal-art"
-    let count = 0 // hay que tomar la cantidad desde el input
-    idhtml+=art
-    html+=`<p>` + ex[0] + ` ` +  count* ex[1] + `</p>`
-    document.getElementById(idhtml).innerHTML = html;
+function subtotalArt(articulo){ // función que toma el precio, cantidad e id del articulo para calcular el subtotal 
+    let art = carrito.articles[articulo];
+    let cant = document.getElementById(articulo).value
+    let ex = exchange(art.currency,MONEDA,parseFloat(art.unitCost));
+    if (cant < 1){
+        cant = 1;
+        document.getElementById(art).value = 1;
+    }
+    document.getElementById("subtotal-art"+articulo).innerHTML = `<p>` + ex[0] + ` ` +  cant * ex[1] + `</p>`;
+    return cant * ex[1]
+}
+
+function showTotal(){
+    let html_art = "";
+    let html_envio = "";
+    let html_total = "";
+    let total  = 0;
+    for (let i = 0; i < carrito.articles.length; i++){
+        total += subtotalArt(i)
+    } 
+    let envio = 0.15 // dejo envio premium hasta que se seleccione un botón (siguiente entrega)
+    let total_total = total+total*envio
+    html_art = `<p class="mt-2" style="text-align:end; font-size: 1.5em;">`+total+`</p>`;
+    html_envio = `<p class="mt-2" style="text-align:end; font-size: 1.5em;">`+envio*total+`</p>`;
+    html_total = `<p class="mt-2" style="text-align:end; font-size: 1.5em; font-weight:600;">`+total_total+`</p>`;
+    document.getElementById("tot-art").innerHTML = html_art;
+    document.getElementById("tot-envio").innerHTML = html_envio;
+    document.getElementById("total-total").innerHTML = html_total;
+    let html_moneda=`<p class="mt-2" style="text-align:end; font-size: 1.5em;"> `+MONEDA+` </p>`;
+    document.getElementById("mon").innerHTML = html_moneda;
+    document.getElementById("mone").innerHTML = html_moneda;
+    html_moneda=`<p class="mt-2" style="text-align:end; font-size: 1.5em;font-weight:600;"> `+MONEDA+` </p>`;
+    document.getElementById("mont").innerHTML = html_moneda;
+}
+
+function update(articulo){
+    subtotalArt(articulo);
+    showTotal();
 }
 
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData('https://japdevdep.github.io/ecommerce-api/cart/654.json').then(function (resultObj) { // obtengo el json del producto
         if (resultObj.status === "ok") {
-            showCarrito(resultObj.data)
+            carrito = resultObj.data;
+            showCarrito(carrito)
+            showTotal()
         }
     });
 });

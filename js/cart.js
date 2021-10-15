@@ -1,11 +1,14 @@
-const MONEDA = 'UYU';
-let carrito = [];
+const MONEDA = 'UYU'; // Defino la moneda con la que quiero trabajar
+let carrito = []; // Para cargar los productos en el carrito
 
-function showCarrito(carrito) {
+function showCarrito(carrito) { // Función que muestra los productos en el carrito
     let html = "";
-    for (let i = 0; i < carrito.articles.length; i++) {
+    for (let i = 0; i < carrito.articles.length; i++) { // Recorro todos los artículos del json
         let art = carrito.articles[i];
-        let ex = exchange(art.currency,MONEDA,parseFloat(art.unitCost))
+        let ex = exchange(art.currency,MONEDA,parseFloat(art.unitCost)) // Llamo a la función que hace la conversión de moneda
+        // Vemos en el contenido para unir al código HTML, a cada input (para poner la cantidad) le asigno un id que 
+        // corresponde con su orden en el json, además llamo a la función update() cuando se cambia el valor (onchange)
+        // Muestro también el nombre, la foto y el precio unitario del producto
         html += `
         <div class="list-group-item list-group-item-action mt-2" style="border:1px solid white">
             <div class="row" >
@@ -43,40 +46,40 @@ function showCarrito(carrito) {
     document.getElementById("cart").innerHTML = html;
 }
 
-function exchange(from,to,amount){
-    let result = [to];
-    if (from === 'UYU' && to === 'USD'){
+function exchange(from,to,amount){ // Función que convierte la moneda, con parámetros en orden: moneda original, moneda destino, cantidad
+    let result = [to]; // Hago una lista para cargar el resultado, como primer objeto dentro tengo la moneda destino
+    if (from === 'UYU' && to === 'USD'){ // Comparo los diferentes cambios posibles que quiero
         result.push( parseFloat(amount)/40);
     }else if (from === 'USD' && to === 'UYU'){
         result.push( parseFloat(amount)*40);
     }else{
-        result.push( parseFloat(amount));
+        result.push( parseFloat(amount)); // Por si está en UYU y no lo quiero cambiar
     }
-    return result;
+    return result; // Devuelvo la moneda destino y el precio
 }
 
-function subtotalArt(articulo){ // función que toma el precio, cantidad e id del articulo para calcular el subtotal 
-    let art = carrito.articles[articulo];
-    let cant = document.getElementById(articulo).value
-    let ex = exchange(art.currency,MONEDA,parseFloat(art.unitCost));
-    if (cant < 1){
+function subtotalArt(articulo){ // Función que toma el id del artículo y nos da su subtotal 
+    let art = carrito.articles[articulo]; // Cargo al articulo en cuestión
+    let cant = document.getElementById(articulo).value // Llamo al valor del input, que es la cantidad
+    let ex = exchange(art.currency,MONEDA,parseFloat(art.unitCost)); // Llamo a la función para obtener la conversión y el precio
+    if (cant < 1){ // Si se pone menos que 1 en el input no se calcula el subtotal
         cant = 1;
         document.getElementById(art).value = 1;
     }
-    document.getElementById("subtotal-art"+articulo).innerHTML = `<p>` + ex[0] + ` ` +  cant * ex[1] + `</p>`;
-    return cant * ex[1]
+    document.getElementById("subtotal-art"+articulo).innerHTML = `<p>` + ex[0] + ` ` +  cant * ex[1] + `</p>`; // Mostramos la moneda y el subtotal
+    return cant * ex[1] // También devolvemos el subtotal para calcular el total
 }
 
-function showTotal(){
+function showTotal(){ // Función que calcula el total y lo muestra (con el subtotal y el costo de envío)
     let html_art = "";
     let html_envio = "";
     let html_total = "";
     let total  = 0;
     for (let i = 0; i < carrito.articles.length; i++){
-        total += subtotalArt(i)
+        total += subtotalArt(i) // Sumo el subtotal de cada articulo
     } 
-    let envio = 0.15 // dejo envio premium hasta que se seleccione un botón (siguiente entrega)
-    let total_total = total+total*envio
+    let envio = 0.15 // Dejo el valor de premium hasta la siguiente entrega
+    let total_total = total+total*envio // Calculo el total entero, subtotal de los artículos más el costo de envío
     html_art = `<p class="mt-2" style="text-align:end; font-size: 1.5em;">`+total+`</p>`;
     html_envio = `<p class="mt-2" style="text-align:end; font-size: 1.5em;">`+envio*total+`</p>`;
     html_total = `<p class="mt-2" style="text-align:end; font-size: 1.5em; font-weight:600;">`+total_total+`</p>`;
@@ -90,7 +93,7 @@ function showTotal(){
     document.getElementById("mont").innerHTML = html_moneda;
 }
 
-function update(articulo){
+function update(articulo){ // Función que llama a las funciones que calculan el subtotal de los artículos y el total entero
     subtotalArt(articulo);
     showTotal();
 }
@@ -99,8 +102,8 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData('https://japdevdep.github.io/ecommerce-api/cart/654.json').then(function (resultObj) { // obtengo el json del producto
         if (resultObj.status === "ok") {
             carrito = resultObj.data;
-            showCarrito(carrito)
-            showTotal()
+            showCarrito(carrito) // Llamo a la función que muestra los artículos del carrito
+            showTotal() // Llamo por primera vez a la función que muestra el total (con las cantidades originales del json)
         }
     });
 });

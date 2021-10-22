@@ -67,25 +67,24 @@ function showProductsList(currentProductsArray){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
 //suma a la variable cada producto para poner en el html y mostrarlo, muestra su imagen, descripcion, nombre, cantidad de vendidos, moneda y precio
             htmlContentToAppend += `
-            <a  href="product-info.html" class="list-group-item list-group-item-action" style="border:1px solid #fff">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ product.name +`</h4>
+            <div class="col-md-4">
+              <a href="product-info.html" class="card mb-4 shadow-sm custom-card">
+                <img class="bd-placeholder-img card-img-top"  src="` + product.imgSrc + `" alt="` + product.description + `">
+                <h4 class="mt-2 text-center">`+ product.name +`</h4>
+                <div class="card-body">
+                    <small class="text-muted">` + product.description + `</small>
+                    <div class="row w-100 mt-1">
+                        <div class="col-7">
+                        <p>`+product.currency+` `+product.cost+`</p>
+                        </div>
+                        <div class="col-5 text-right">
                             <small class="text-muted">` + product.soldCount + ` vendidos</small>
                         </div>
-                        <small class="text-muted">` + product.description + `</small>
-                        <p>`+product.currency+` `+product.cost+`</p>
-    
                     </div>
                 </div>
-            </a>`
-            if(i<currentProductsArray.length-1){
-                htmlContentToAppend+=`<div class="dropdown-divider"></div>`;
-              }
+              </a>
+            </div>
+            `
         }
 //se "mete" la variable con el contenido en formato html al archivo html
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;

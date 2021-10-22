@@ -43,12 +43,31 @@
       <div id="mi-nombre"></div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <div class="p-3 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="text-right">Profile Settings</h4>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6"><label class="labels">Primer nombre</label><input type="text" class="form-control" placeholder="Primer nombre" value="" id="first-name"></div>
+                <div class="col-md-6"><label class="labels">Primer apellido</label><input type="text" class="form-control" value="" placeholder="Primer apellido" id="first-surname"></div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6"><label class="labels">Segundo nombre</label><input type="text" class="form-control" placeholder="Segundo nombre" value="" id="second-name"></div>
+              <div class="col-md-6"><label class="labels">Segundo apellido</label><input type="text" class="form-control" value="" placeholder="Segundo apellido" id="second-surname"></div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6"><label class="labels">Teléfono de contacto</label><input type="text" class="form-control" placeholder="Número de teléfono" id="phone-number" value=""></div>
+                <div class="col-md-6"><label class="labels">Edad</label><input type="text" class="form-control" placeholder="Edad" id="age" value=""></div>
+                <div class="col-md-12 mt-1"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Dirección de correo electrónico" value="" id="email"></div>
+            </div>
+            <div class="mt-5 text-center"><button class="btn btn-tomato" type="button" onclick="saveProfile()">Guardar perfil</button></div>
+        </div>
+      </div>
+      <div class="col-1"></div>
     </div>
   </div>
   <footer class="text-muted bg-light">

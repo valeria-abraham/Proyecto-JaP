@@ -328,3 +328,43 @@ a.badge-tomato:focus {
 .show > .btn-tomato2.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem tomato;
 }
+
+.padding {
+  padding: 3rem !important;
+}
+
+.user-card-full {
+  overflow: hidden;
+}
+
+.card {
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+  box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+  border: none;
+  margin-bottom: 30px;
+}
+
+.f-w-600 {
+  font-weight: 600;
+}
+
+.f-w-400 {
+  font-weight: 400;
+}
+
+.alert-tomato {
+  color: rgb(138, 54, 39);
+  background-color: rgb(252, 184, 172);
+  border-color: rgb(138, 54, 39);
+}
+.alert-tomato hr {
+  border-top-color: rgb(138, 54, 39);
+}
+
+.bg-tomato {
+  background-color: rgb(252, 184, 172) !important;
+  border-color: rgb(138, 54, 39)!important;
+  border: solid 1px;
+  color: rgb(138, 54, 39);
+}

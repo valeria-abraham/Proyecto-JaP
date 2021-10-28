@@ -58,20 +58,21 @@
       </div>
     </nav>
     <div class="container">
-      <div class="align-items-center mb-3 mt-5">
+      <div id="alerta"></div>
+      <div class="align-items-center mb-3 mt-3">
         <h1 style="font-weight: 800; text-align: center">Mi perfil</h1>
       </div>
-      <div class="card md-1">
+      <div class="card md-1 mb-4">
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
               <a
                 class="nav-link active"
-                id="nav-home-tab"
+                id="nav-datos-tab"
                 data-toggle="tab"
-                href="#nav-home"
+                href="#nav-datos"
                 role="tab"
-                aria-controls="nav-home"
+                aria-controls="nav-datos"
                 aria-selected="true"
                 >Mis datos</a
               >
@@ -79,13 +80,25 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                id="nav-prod-tab"
+                id="nav-mod-tab"
                 data-toggle="tab"
-                href="#nav-prod"
+                href="#nav-mod"
                 role="tab"
-                aria-controls="nav-prod"
+                aria-controls="nav-mod"
                 aria-selected="false"
                 >Modificar mis datos</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="nav-photo-tab"
+                data-toggle="tab"
+                href="#nav-photo"
+                role="tab"
+                aria-controls="nav-photo"
+                aria-selected="false"
+                >Añadir foto</a
               >
             </li>
           </ul>
@@ -94,15 +107,15 @@
           <!-- Pestaña de modificar datos -->
           <div
             class="tab-pane fade"
-            id="nav-prod"
+            id="nav-mod"
             role="tabpanel"
-            aria-labelledby="nav-prod-tab"
+            aria-labelledby="nav-mod-tab"
           >
             <!-- Form de modificar datos -->
-            <div class="p-3">
+            <div class="p-3 px-5 mx-5">
               <div class="row mt-2">
                 <div class="col-md-6">
-                  <label class="labels">Primer nombre</label
+                  <label class="labels f-w-600">Primer nombre *</label
                   ><input
                     type="text"
                     class="form-control"
@@ -112,19 +125,7 @@
                   />
                 </div>
                 <div class="col-md-6">
-                  <label class="labels">Primer apellido</label
-                  ><input
-                    type="text"
-                    class="form-control"
-                    value=""
-                    placeholder="Primer apellido"
-                    id="first-surname"
-                  />
-                </div>
-              </div>
-              <div class="row mt-2">
-                <div class="col-md-6">
-                  <label class="labels">Segundo nombre</label
+                  <label class="labels f-w-600">Segundo nombre</label
                   ><input
                     type="text"
                     class="form-control"
@@ -133,8 +134,20 @@
                     id="second-name"
                   />
                 </div>
+              </div>
+              <div class="row mt-2">
                 <div class="col-md-6">
-                  <label class="labels">Segundo apellido</label
+                  <label class="labels f-w-600">Primer apellido *</label
+                  ><input
+                    type="text"
+                    class="form-control"
+                    value=""
+                    placeholder="Primer apellido"
+                    id="first-surname"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label class="labels f-w-600">Segundo apellido</label
                   ><input
                     type="text"
                     class="form-control"
@@ -145,8 +158,8 @@
                 </div>
               </div>
               <div class="row mt-2">
-                <div class="col-md-6">
-                  <label class="labels">Teléfono de contacto</label
+                <div class="col-md-6 f-w-600">
+                  <label class="labels">Teléfono de contacto *</label
                   ><input
                     type="text"
                     class="form-control"
@@ -156,17 +169,17 @@
                   />
                 </div>
                 <div class="col-md-6">
-                  <label class="labels">Edad</label
+                  <label class="labels f-w-600">Edad (años) *</label
                   ><input
                     type="text"
                     class="form-control"
-                    placeholder="Edad"
+                    placeholder="Edad en años"
                     id="age"
                     value=""
                   />
                 </div>
                 <div class="col-md-12 mt-1">
-                  <label class="labels">Email</label
+                  <label class="labels f-w-600">Email *</label
                   ><input
                     type="text"
                     class="form-control"
@@ -187,16 +200,44 @@
               </div>
             </div>
           </div>
+          <!-- Fin de modificar datos -->
           <!-- Pestaña de mostrar mis datos guardados -->
           <div
             class="tab-pane fade show active"
-            id="nav-home"
+            id="nav-datos"
             role="tabpanel"
-            aria-labelledby="nav-home-tab"
+            aria-labelledby="nav-datos-tab"
           >
-            <div id="datos-personales"></div>
+            <div class="py-3 px-5">
+              <div class="row">
+                <div class="col-md-9" id="datos-personales"></div>
+                <div class="col-md-3" id="add-photo">
+                  <p class="mb-1 f-w-600 text-left">Mi foto de perfil:</p>
+                  <img src="" id="tableBanner" />
+                </div>
+              </div>
+            </div>
           </div>
-          <!-- Fin comentarios -->
+          <!-- Fin datos guardados -->
+          <!-- Pestaña añadir foto -->
+          <div
+            class="tab-pane fade show"
+            id="nav-photo"
+            role="tabpanel"
+            aria-labelledby="nav-photo-tab"
+          >
+            <div class="p-3 px-5 mx-5">
+              <input type="file" id="bannerImg" value="" />
+              <button
+                  class="btn btn-tomato"
+                  type="button"
+                  onclick="addPhoto()"
+                >
+                  Guardar foto
+                </button>
+            </div>
+          </div>
+          <!-- Fin de añadir foto -->
         </div>
       </div>
     </div>

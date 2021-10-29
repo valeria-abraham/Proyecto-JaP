@@ -9,8 +9,8 @@ function saveProfile() {
     let html = `<div class="alert alert-tomato" role="alert">
     Debes llenar todos los datos <strong>requeridos</strong>, marcados con un <strong>*</strong>.
   </div>`;
-    document.getElementById("alerta").innerHTML = html;
-    showProfile(undefined)
+    document.getElementById("not-complete-alert").innerHTML = html;
+    showProfile(undefined);
   } else {
     var info = {
       // Creo un objeto JSON para guardar todos los datos entrados
@@ -23,7 +23,7 @@ function saveProfile() {
       phone: document.getElementById("phone-number").value,
     };
     localStorage.setItem("info", JSON.stringify(info)); // Convierto al objeto JSON en una string para poder guardarlo en el localStorage
-    document.getElementById("alerta").innerHTML = '';
+    document.getElementById("not-complete-alert").innerHTML = "";
     showProfile(info); // Llamo a la función que lo muestra cada vez que se guarden nuevamente
   }
 }
@@ -33,16 +33,21 @@ function showProfile(info) {
   let html = "";
   if (info != undefined) {
     // Muestro los datos del perfil
-    html =`
+    html =
+      `
     <div class="row mt-2">
       <div class="col-md-6">
         <p class="mb-1 f-w-600">Primer nombre</p>
-        <h6 class="text-muted f-w-400">` + info.firstname + `</h6>
+        <h6 class="text-muted f-w-400">` +
+      info.firstname +
+      `</h6>
       </div>
       <div class="col-md-6">
         <p class="mb-1 f-w-600">Segundo nombre</p>
         <h6 class="text-muted f-w-400">
-          ` + info.secondname + `
+          ` +
+      info.secondname +
+      `
         </h6>
       </div>
     </div>
@@ -50,30 +55,40 @@ function showProfile(info) {
       <div class="col-md-6">
         <p class="mb-1 f-w-600">Primer apellido</p>
         <h6 class="text-muted f-w-400">
-          ` + info.firstsurname + `
+          ` +
+      info.firstsurname +
+      `
         </h6>
       </div>
       <div class="col-md-6">
         <p class="mb-1 f-w-600">Segundo apellido</p>
         <h6 class="text-muted f-w-400">
-          ` + info.secondsurname + `
+          ` +
+      info.secondsurname +
+      `
         </h6>
       </div>
     </div>
     <div class="row mt-2">
       <div class="col-md-6">
         <p class="mb-1 f-w-600">Teléfono</p>
-        <h6 class="text-muted f-w-400">` + info.phone + `</h6>
+        <h6 class="text-muted f-w-400">` +
+      info.phone +
+      `</h6>
       </div>
       <div class="col-md-6">
         <p class="mb-1 f-w-600">Edad (años)</p>
-        <h6 class="text-muted f-w-400">` + info.age + `</h6>
+        <h6 class="text-muted f-w-400">` +
+      info.age +
+      `</h6>
       </div>
     </div>
     <div class="row mt-2">
       <div class="col-md-12">
         <p class="mb-1 f-w-600">E-mail</p>
-        <h6 class="text-muted f-w-400">` + info.email + `</h6>
+        <h6 class="text-muted f-w-400">` +
+      info.email +
+      `</h6>
       </div>
     </div>`;
   } else {
@@ -89,47 +104,55 @@ function showProfile(info) {
     </div>
   </div>`;
   }
-
-  document.getElementById("datos-personales").innerHTML = html;
+  document.getElementById("profile-data").innerHTML = html;
 }
 
-// function addPhoto(){
-//   bannerImage = document.getElementById('bannerImg');
-//   imgData = getBase64Image(bannerImage);
-//   localStorage.setItem("imgData",imgData);
-// }
+function addPhoto() {
+  const imgPath = document.querySelector("input[type=file]").files[0];
+  const reader = new FileReader();
+  reader.addEventListener(
+    "load",
+    function () {
+      // convert image file to base64 string and save to localStorage
+      localStorage.setItem("profileImage", reader.result);
+    },
+    false
+  );
+  if (imgPath) {
+    reader.readAsDataURL(imgPath);
+  }
+  showPhoto();
+}
 
-// function showPhoto(){
-//   var dataImage = localStorage.getItem('imgData');
-//   bannerImg = document.getElementById('tableBanner');
-//   bannerImg.src = "data:image/png;base64," + dataImage;
-// }
-
-// function getBase64Image(img) {
-//   var canvas = document.createElement("canvas");
-//   canvas.width = img.width;
-//   canvas.height = img.height;
-
-//   var ctx = canvas.getContext("2d");
-//   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-//   var dataURL = canvas.toDataURL("image/jpeg");
-//   return dataURL;;
-// }
+function showPhoto() {
+  var dataImage = localStorage.getItem("profileImage");
+  if (dataImage != null) {
+    let profileImage = document.getElementById("profile-image");
+    profileImage.src = dataImage;
+    document.getElementById("not-image").innerHTML = "";
+  } else {
+    let html = `<p class="mb-1 text-justify"> No se ha cargado una imagen :( </p>`;
+    document.getElementById("not-image").innerHTML = html;
+  }
+}
 
 document.addEventListener("DOMContentLoaded", function (e) {
   if (localStorage.getItem("info") != null) {
-    var datos = JSON.parse(localStorage.getItem("info"));
-    document.getElementById("first-name").value = datos.firstname;
-    document.getElementById("first-surname").value = datos.firstsurname;
-    document.getElementById("second-name").value = datos.secondname;
-    document.getElementById("second-surname").value = datos.secondsurname;
-    document.getElementById("age").value = datos.age;
-    document.getElementById("email").value = datos.email;
-    document.getElementById("phone-number").value = datos.phone;
-    showProfile(datos);
+    var profile = JSON.parse(localStorage.getItem("info"));
+    // Para que queden mostrados en los campos de imput
+    document.getElementById("first-name").value = profile.firstname;
+    document.getElementById("first-surname").value = profile.firstsurname;
+    document.getElementById("second-name").value = profile.secondname;
+    document.getElementById("second-surname").value = profile.secondsurname;
+    document.getElementById("age").value = profile.age;
+    document.getElementById("email").value = profile.email;
+    document.getElementById("phone-number").value = profile.phone;
+    // Mostramos los datos en el perfil no modificable
+    showProfile(profile);
   } else {
-    let datos = undefined;
-    showProfile(datos);
+    // Si no hay nada adentro del objeto info le ponemos algo indefinido a la función showProfile para que nos muestre que no hay nada ingresado
+    let profile = undefined;
+    showProfile(profile);
   }
+  showPhoto();
 });

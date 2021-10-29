@@ -19,23 +19,6 @@
       href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
       rel="stylesheet"
     />
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/dropzone.css" rel="stylesheet" />
@@ -58,11 +41,12 @@
       </div>
     </nav>
     <div class="container">
-      <div id="alerta"></div>
+      <div id="not-complete-alert"></div>
       <div class="align-items-center mb-3 mt-3">
         <h1 style="font-weight: 800; text-align: center">Mi perfil</h1>
       </div>
       <div class="card md-1 mb-4">
+        <!-- Nombres de las pestañas -->
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
@@ -103,6 +87,8 @@
             </li>
           </ul>
         </div>
+        <!-- Fin nombre de pestañas -->
+        <!-- Contenido de las pestañas -->
         <div class="tab-content" id="nav-tabContent">
           <!-- Pestaña de modificar datos -->
           <div
@@ -122,6 +108,7 @@
                     placeholder="Primer nombre"
                     value=""
                     id="first-name"
+                    autocomplete="off"
                   />
                 </div>
                 <div class="col-md-6">
@@ -132,6 +119,7 @@
                     placeholder="Segundo nombre"
                     value=""
                     id="second-name"
+                    autocomplete="off"
                   />
                 </div>
               </div>
@@ -144,6 +132,7 @@
                     value=""
                     placeholder="Primer apellido"
                     id="first-surname"
+                    autocomplete="off"
                   />
                 </div>
                 <div class="col-md-6">
@@ -154,6 +143,7 @@
                     value=""
                     placeholder="Segundo apellido"
                     id="second-surname"
+                    autocomplete="off"
                   />
                 </div>
               </div>
@@ -166,6 +156,7 @@
                     placeholder="Número de teléfono"
                     id="phone-number"
                     value=""
+                    autocomplete="off"
                   />
                 </div>
                 <div class="col-md-6">
@@ -176,6 +167,7 @@
                     placeholder="Edad en años"
                     id="age"
                     value=""
+                    autocomplete="off"
                   />
                 </div>
                 <div class="col-md-12 mt-1">
@@ -186,6 +178,7 @@
                     placeholder="Dirección de correo electrónico"
                     value=""
                     id="email"
+                    autocomplete="off"
                   />
                 </div>
               </div>
@@ -210,10 +203,11 @@
           >
             <div class="py-3 px-5">
               <div class="row">
-                <div class="col-md-9" id="datos-personales"></div>
+                <div class="col-md-9" id="profile-data"></div>
                 <div class="col-md-3" id="add-photo">
                   <p class="mb-1 f-w-600 text-left">Mi foto de perfil:</p>
-                  <img src="" id="tableBanner" />
+                  <div class="" id="not-image"></div>
+                  <img src="" id="profile-image" class="img-thumbnail" />
                 </div>
               </div>
             </div>
@@ -227,18 +221,35 @@
             aria-labelledby="nav-photo-tab"
           >
             <div class="p-3 px-5 mx-5">
-              <input type="file" id="bannerImg" value="" />
-              <button
-                  class="btn btn-tomato"
-                  type="button"
-                  onclick="addPhoto()"
-                >
-                  Guardar foto
-                </button>
+              <div class="row">
+                <div class="col-md-12 col-sm-12">
+                  <input type="file" value="" />
+                  <button
+                    class="btn btn-tomato ml-5"
+                    type="button"
+                    onclick="addPhoto()"
+                  >
+                    Guardar foto
+                  </button>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-12 col-sm-12">
+                  <div class="card bg-tomato">
+                    <div class="card-body text-center">
+                      ¡Para poder ver tu nueva foto de perfil necesitás recargar
+                      la página! Una vez que pongas una foto de perfil no será
+                      posible eliminarla, pero sí se puede cambiar por otra.
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!-- Fin de añadir foto -->
         </div>
+        <!-- Fin contenido de las pestañas -->
       </div>
     </div>
     <footer class="text-muted bg-light">

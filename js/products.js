@@ -90,6 +90,7 @@ function showProductsList(currentProductsArray) {
         (maxCount != undefined && parseInt(product.cost) <= maxCount))
     ) {
       //suma a la variable cada producto para poner en el html y mostrarlo, muestra su imagen, descripcion, nombre, cantidad de vendidos, moneda y precio
+      // Cambiamos el HTML de la página para poder tener un diseño responsive en tarjetas
       htmlContentToAppend +=
         `
             <div class="col-md-4">

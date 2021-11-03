@@ -73,28 +73,28 @@
       <!-- Dirección -->
       <h4>Dirección de envío:</h4>
       <div class="input-group mb-3">
-        <span class="input-group-text" id="calle">Calle</span>
+        <span class="input-group-text">Calle</span>
         <input
+          id="calle"
           type="text"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="calle"
+          value=""
         />
-        <span class="input-group-text ml-5" id="num-puerta">Número</span>
+        <span class="input-group-text ml-5">Número</span>
         <input
+          id="num-puerta"
           type="text"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="num-puerta"
+          value=""
         />
       </div>
       <div class="input-group mb-3">
-        <span class="input-group-text" id="esq">Esquina</span>
+        <span class="input-group-text">Esquina</span>
         <input
+          id="esq"
           type="text"
           class="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="esq"
+          value=""
         />
       </div>
       <!-- Tipo de envío -->
@@ -110,7 +110,8 @@
                 name="envio-precio"
                 autocomplete="off"
                 value="0.15"
-              />Premium 2 a 5 días (15%)
+                onchange="showTotal()"
+              />Premium: 2 a 5 días (15%)
             </label>
             <label class="btn btn-tomato2" id="tipo-envio-e">
               <input
@@ -118,7 +119,8 @@
                 name="envio-precio"
                 autocomplete="off"
                 value="0.07"
-              />Express 5 a 8 días (7%)
+                onchange="showTotal()"
+              />Express: 5 a 8 días (7%)
             </label>
             <label class="btn btn-tomato2" id="tipo-envio-s">
               <input
@@ -126,7 +128,8 @@
                 name="envio-precio"
                 autocomplete="off"
                 value="0.05"
-              />Standard 12 a 15 días (5%)
+                onchange="showTotal()"
+              />Standard: 12 a 15 días (5%)
             </label>
           </div>
         </div>
@@ -198,14 +201,89 @@
       <!-- Forma de pago -->
       <div class="dropdown-divider-cart"></div>
       <h4>Forma de pago:</h4>
-      <div class="row ml-5">
-        <p>No se ha seleccionado una forma de pago.</p>
-        <a href="" class="ml-2">Seleccionar.</a>
+      <div class="row ml-5 align-items-center">
+        <div id="payment">
+          <button type="button" class="btn-non-format2 disabled">
+            No se ha seleccionado una forma de pago.
+          </button>
+        </div>
+        <button
+          type="button"
+          class="btn-anchor"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+          Seleccionar
+        </button>
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Forma de pago</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div
+                  class="btn-group btn-group-toggle mb-2"
+                  data-toggle="buttons"
+                >
+                  <label class="btn btn-tomato2">
+                    <input
+                      type="radio"
+                      name="payment"
+                      autocomplete="off"
+                      value="1"
+                    />
+                    Transferencia bancaria
+                  </label>
+                  <label class="btn btn-tomato2">
+                    <input
+                      type="radio"
+                      name="payment"
+                      autocomplete="off"
+                      value="2"
+                    />
+                    Tarjeta de crédito
+                  </label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Cerrar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-tomato"
+                  onclick="savePayment()"
+                >
+                  Guardar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="row mb-4">
+      <div class="row mb-4 mt-3">
         <div class="col-4"></div>
         <div class="col-4" style="text-align: center">
-          <button type="button" class="btn btn-tomato" id="comprar">
+          <button type="button" class="btn btn-tomato" onclick="validation()">
             Finalizar compra
           </button>
         </div>

@@ -1,5 +1,6 @@
 const MONEDA = "UYU"; // Defino la moneda con la que quiero trabajar
 let carrito = []; // Para cargar los productos en el carrito
+var carrito_length = 0;
 
 function showCarrito(carrito) {
   // Función que muestra los productos en el carrito
@@ -105,10 +106,10 @@ function showTotal() {
   let html_envio = "";
   let html_total = "";
   let total = 0;
-  for (let i = 0; i < carrito.articles.length; i++) {
+  for (let i = 0; i < carrito_length; i++) {
     total += subtotalArt(i); // Sumo el subtotal de cada articulo
   }
-  let envio = 0.15; // Dejo el valor de premium hasta la siguiente entrega
+  let envio = shipping(); // Dejo el valor de premium hasta la siguiente entrega
   let total_total = total + total * envio; // Calculo el total entero, subtotal de los artículos más el costo de envío
   html_art =
     `<p class="mt-2" style="text-align:end; font-size: 1.5em;">` +
@@ -144,12 +145,56 @@ function update(articulo) {
   showTotal();
 }
 
+function savePayment() {
+  let html = "";
+  let selected = document.getElementsByName("payment");
+  let pago = 0;
+  if (selected[0].checked) {
+    html = `<button type="button" class="btn-non-format2 disabled">Ha seleccionado el pago por transferencia bancaria.</button>`;
+    pago = selected[0].value;
+  } else if (selected[1].checked) {
+    html = `<button type="button" class="btn-non-format2 disabled">Ha seleccionado el pago por tarjeta de crédito.</button>`;
+    pago = selected[1].value;
+  } else {
+    html = `<button type="button" class="btn-non-format2 disabled">No se ha seleccionado una forma de pago.</button>`;
+    pago = 0;
+  }
+  document.getElementById("payment").innerHTML = html;
+  return pago
+}
+
+function shipping() {
+  var selected = document.getElementsByName("envio-precio");
+  var envio = 0;
+  for (i = 0; i < selected.length; i++) {
+    if (selected[i].checked) {
+      envio = selected[i].value; // Asigna el valor del envío según lo seleccionado
+    }
+  }
+  return envio;
+}
+
+function validation() {
+  let envio = shipping();
+  let payment = savePayment();
+  let calle = document.getElementById("calle").value;
+  let num = document.getElementById("num-puerta").value;
+  let esq = document.getElementById("esq").value;
+
+  if (envio != 0 || payment != 0 || calle != "" || num != "" || esq != ""){
+    alert('No faltan completar cosas');
+  } else {
+    alert('Faltan completar cosas');
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function (e) {
   getJSONData("https://japdevdep.github.io/ecommerce-api/cart/654.json").then(
     function (resultObj) {
       // obtengo el json del producto
       if (resultObj.status === "ok") {
         carrito = resultObj.data;
+        carrito_length = carrito.articles.length;
         showCarrito(carrito); // Llamo a la función que muestra los artículos del carrito
         showTotal(); // Llamo por primera vez a la función que muestra el total (con las cantidades originales del json)
       }

@@ -369,6 +369,14 @@ a.badge-tomato:focus {
   color: rgb(138, 54, 39);
 }
 
+.bg-not-tomato {
+  background-color: #bbf19c !important;
+  border-color: #5a9637 !important;
+  border: solid 1px;
+  color: #39661f;
+}
+
+
 .btn-anchor {
   color: tomato;
   border: 0ch;

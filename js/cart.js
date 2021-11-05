@@ -159,13 +159,13 @@ function savePayment() {
     html = `<button type="button" class="btn-non-format2 disabled">No se ha seleccionado una forma de pago.</button>`;
     pago = 0;
   }
+  localStorage.setItem("payment", pago);
   document.getElementById("payment").innerHTML = html;
-  return pago
 }
 
 function shipping() {
-  var selected = document.getElementsByName("envio-precio");
-  var envio = 0;
+  let selected = document.getElementsByName("envio-precio");
+  let envio = 0;
   for (i = 0; i < selected.length; i++) {
     if (selected[i].checked) {
       envio = selected[i].value; // Asigna el valor del envío según lo seleccionado
@@ -174,27 +174,66 @@ function shipping() {
   return envio;
 }
 
+function clearPayment() {
+  let selected = document.getElementsByName("payment"); // Para limpiar la selección de pago
+  for (
+    i = 0;
+    i < selected.length;
+    i++ // recorre todas las opciones de botones radio que hay con el nombre envio-precio
+  ) {
+    selected[i].checked = false;
+  }
+  if (localStorage.getItem("payment") != null) {
+    // Para borrar la información del pago cada vez que recargo la página
+    localStorage.removeItem("payment");
+  }
+  document.getElementById("payment").innerHTML = `<button type="button" class="btn-non-format2 disabled">No se ha seleccionado una forma de pago.</button>`;
+}
+
 function validation() {
   let envio = shipping();
-  let payment = savePayment();
+  let payment = localStorage.getItem("payment");
   let calle = document.getElementById("calle").value;
   let num = document.getElementById("num-puerta").value;
   let esq = document.getElementById("esq").value;
-
-  if (envio != 0 || payment != 0 || calle != "" || num != "" || esq != ""){
-    alert('No faltan completar cosas');
+  let pais = document.getElementById("pais").value;
+  let html = "";
+  if (envio != 0 && payment != null && calle != "" && num != "" && esq != "" && pais !="") {
+    html = `<div class="row mt-2">
+    <div class="col-md-12">
+      <div class="card bg-not-tomato mb-1">
+        <div class="card-body text-center">
+          Ha realizado su compra con éxito :)
+        </div>
+      </div>
+    </div>
+  </div>`;
+    document.getElementById("not-complete-alert").innerHTML = html;
   } else {
-    alert('Faltan completar cosas');
+    html = `<div class="row mt-2">
+    <div class="col-md-12">
+      <div class="card bg-tomato mb-1">
+        <div class="card-body text-center">
+          No has entrado todos los campos requeridos para realizar la compra (método de pago, dirección y tipo de envío).
+        </div>
+      </div>
+    </div>
+  </div>`;
+    document.getElementById("not-complete-alert").innerHTML = html;
   }
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
+  if (localStorage.getItem("payment") != null) {
+    // Para borrar la información del pago cada vez que recargo la página
+    localStorage.removeItem("payment");
+  }
   getJSONData("https://japdevdep.github.io/ecommerce-api/cart/654.json").then(
     function (resultObj) {
       // obtengo el json del producto
       if (resultObj.status === "ok") {
         carrito = resultObj.data;
-        carrito_length = carrito.articles.length;
+        carrito_length = carrito.articles.length; // Para no tener problemas llamando a la función showTotal() en cualquier lado
         showCarrito(carrito); // Llamo a la función que muestra los artículos del carrito
         showTotal(); // Llamo por primera vez a la función que muestra el total (con las cantidades originales del json)
       }

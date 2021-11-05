@@ -41,7 +41,6 @@
       </div>
     </nav>
     <div class="container">
-      <div id="not-complete-alert"></div>
       <div class="align-items-center mb-3 mt-3">
         <h1 style="font-weight: 800; text-align: center">Mi perfil</h1>
       </div>
@@ -252,15 +251,6 @@
         <!-- Fin contenido de las pestañas -->
       </div>
     </div>
-    <footer class="text-muted bg-light">
-      <div class="container">
-        <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-        <p>
-          Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la
-          letra del obligatorio.
-        </p>
-      </div>
-    </footer>
     <div class="alert fade alert-success" role="alert" id="alertResult">
       <span id="resultSpan"></span>
       <button
@@ -270,8 +260,20 @@
         aria-label="Close"
       >
         <span aria-hidden="true">&times;</span>
-      </button>
+    </button>
     </div>
+    <footer class="text-muted bg-light">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+        <p>
+          Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la
+          letra del obligatorio.
+        </p>
+      </div>
+    </footer>
     <div id="spinner-wrapper">
       <div class="lds-ring">
         <div></div>
@@ -280,6 +282,7 @@
         <div></div>
       </div>
     </div>
+
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/dropzone.js"></script>

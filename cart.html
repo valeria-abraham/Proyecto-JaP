@@ -79,13 +79,15 @@
           type="text"
           class="form-control"
           value=""
+          placeholder="Avenida Millán"
         />
-        <span class="input-group-text ml-5">Número</span>
+        <span class="input-group-text">Número de puerta</span>
         <input
           id="num-puerta"
           type="text"
           class="form-control"
           value=""
+          placeholder="4144 bis"
         />
       </div>
       <div class="input-group mb-3">
@@ -95,6 +97,15 @@
           type="text"
           class="form-control"
           value=""
+          placeholder="Camino Castro"
+        />
+        <span class="input-group-text">País</span>
+        <input
+          id="pais"
+          type="text"
+          class="form-control"
+          value=""
+          placeholder="Uruguay"
         />
       </div>
       <!-- Tipo de envío -->
@@ -263,23 +274,31 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Cerrar
-                </button>
-                <button
-                  type="button"
                   class="btn btn-tomato"
                   onclick="savePayment()"
                 >
                   Guardar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-tomato"
+                  onclick="clearPayment()"
+                >
+                  Limpiar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Cerrar
                 </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div id="not-complete-alert"></div>
       <div class="row mb-4 mt-3">
         <div class="col-4"></div>
         <div class="col-4" style="text-align: center">
@@ -298,6 +317,18 @@
         <div></div>
       </div>
     </div>
+    <footer class="text-muted bg-light">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+        <p>
+          Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la
+          letra del obligatorio.
+        </p>
+      </div>
+    </footer>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/dropzone.js"></script>

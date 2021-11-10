@@ -17,16 +17,16 @@ function showCarrito(carrito) {
 
     html +=
       `
-        <div class="list-group-item list-group-item-action mt-2" style="border:1px solid white">
+        <div class="list-group-item mt-2" style="border:1px solid white">
             <div class="row" >
-                <div class="col-2">
+                <div class="col-sm-12 col-md-2 col-lg-2">
                     <a href="product-info.html">
                         <img class="d-block rounded img-carrito" src=` +
       art.src +
       `>
                     </a>
                 </div>
-                <div class="col-4"style="text-align:left;">
+                <div class="col-sm-12 col-md-4 col-lg-4" style="text-align:left;padding-right: 0px;padding-left: 0px;">
                     <h5>` +
       art.name +
       `</h5>
@@ -36,8 +36,11 @@ function showCarrito(carrito) {
       art.unitCost +
       `</p>
                 </div>
-                <div class="col-3">
-                    <div class="d-flex w-100 justify-content-between">
+                <div class="col-sm-12 col-md-3 col-lg-3" style="
+                padding-left: 0px;
+                padding-right: 0px;
+            ">
+                    <div class="justify-content-between">
                         <span> 
                             Cantidad: 
                             <input class="input-" type="number" id="` +
@@ -50,11 +53,14 @@ function showCarrito(carrito) {
       </span>
       <button type="button" class="btn btn-anchor" onclick="removeItemCart(` +
       i +
-      `)"> Quitar </button> 
+      `)"><i class="far fa-trash-alt"></i> </button> 
                     </div>
                 </div>
-                <div class="col-3">
-                    <div class="row d-flex w-100" style="margin-left:20px;">
+                <div class="col-sm-12 col-md-3 col-lg-3" style="
+                padding-left: 0px;
+                padding-right: 0px;
+            ">
+                    <div class="row" style="margin-left:0px;">
                         <h5 class="mr-2">Subtotal:  </h5>
                         <div id="subtotal-art` +
       i +
@@ -160,7 +166,7 @@ function savePayment() {
     html = `<button type="button" class="btn-non-format2 disabled">Ha seleccionado el pago por transferencia bancaria.</button>`;
     pago = selected[0].value;
     modal = `<div class="row mt-2">
-    <div class="col-md-12">
+    <div class="col-sm-12 col-md-12 col-lg-12">
       <div class="card bg-crema mb-1">
         <div class="card-body text-center">
           <p> El número de cuenta donde depositar es: <strong>1234567890</strong> </p>
@@ -173,7 +179,7 @@ function savePayment() {
     html = `<button type="button" class="btn-non-format2 disabled">Ha seleccionado el pago por tarjeta de crédito.</button>`;
     pago = selected[1].value;
     modal = `<div class = "row">
-  <div class="col-md-12 f-w-600 mb-2">
+  <div class="col-sm-12 col-md-12 col-lg-12 f-w-600 mb-2">
   <label class="labels">Número de tarjeta:</label
   ><input
     type="text"
@@ -184,7 +190,7 @@ function savePayment() {
     autocomplete="off"
   />
 </div>
-<div class="col-md-12 f-w-600 mb-2">
+<div class="col-sm-12 col-md-12 col-lg-12 f-w-600 mb-2">
   <label class="labels">CVV:</label
   ><input
     type="text"
@@ -195,7 +201,7 @@ function savePayment() {
     autocomplete="off"
   />
 </div>
-<div class="col-md-12 f-w-600 mb-2">
+<div class="col-sm-12 col-md-12 col-lg-12 f-w-600 mb-2">
   <label class="labels">Fecha de vencimiento:</label
   ><input
     type="month"
@@ -206,7 +212,7 @@ function savePayment() {
     autocomplete="off"
   />
 </div>
-<div class="col-md-12 f-w-600 mb-2">
+<div class="col-sm-12 col-md-12 col-lg-12 f-w-600 mb-2">
   <label class="labels">Titular de la tarjeta:</label
   ><input
     type="text"
@@ -230,6 +236,7 @@ function savePayment() {
 }
 
 function validatePayment() {
+  let html = "";
   if (
     document.getElementById("card-number").value != "" &&
     document.getElementById("valid-date").value != "" &&
@@ -237,7 +244,7 @@ function validatePayment() {
     document.getElementById("card-name").value != ""
   ) {
     html = `<div class="row mt-2">
-    <div class="col-md-12">
+    <div class="col-sm-12 col-md-12 col-lg-12">
       <div class="card bg-not-tomato mb-1">
         <div class="card-body text-center">
           Ha quedado registrada su tarjeta para realizar esta compra, puede finalizarla haciendo click en <strong>Cerrar</strong> y luego en <strong>Finalizar compra</strong>.
@@ -249,7 +256,7 @@ function validatePayment() {
     return 0
   } else {
     html = `<div class="row mt-2">
-    <div class="col-md-12">
+    <div class="col-sm-12 col-md-12 col-lg-12">
       <div class="card bg-tomato mb-1">
         <div class="card-body text-center">
         Faltan completar datos de su tarjeta 
@@ -318,7 +325,7 @@ function validation() {
   ) {
     // Si se completaron todos los datos requeridos mostramos que la compra se realizó con éxito
     html = `<div class="row mt-2">
-    <div class="col-md-12">
+    <div class="col-sm-12 col-md-12 col-lg-12">
       <div class="card bg-not-tomato mb-1">
         <div class="card-body text-center">
           Ha realizado su compra con éxito :)
@@ -330,7 +337,7 @@ function validation() {
   } else {
     // Si hay alguno que no se haya rellenado mostramos que falta algo para llenar
     html = `<div class="row mt-2">
-    <div class="col-md-12">
+    <div class="col-sm-12 col-md-12 col-lg-12">
       <div class="card bg-tomato mb-1">
         <div class="card-body text-center">
           No has entrado todos los campos requeridos para realizar la compra (método de pago, dirección y tipo de envío).

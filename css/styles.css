@@ -422,3 +422,10 @@ a.badge-tomato:focus {
 .btn-non-format2:disabled {
   opacity: 1;
 }
+
+.bg-crema {
+  background-color: #f8f9fa !important;
+  border-color: salmon !important;
+  border: solid 1px;
+  color: tomato;
+}

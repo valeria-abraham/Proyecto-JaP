@@ -46,6 +46,7 @@
     />
     <link rel="stylesheet" type="text/css" href="css/util_login.css" />
     <link rel="stylesheet" type="text/css" href="css/main_login.css" />
+    <meta name="google-signin-client_id" content="711033003881-j0oja2710keghlm5ooitolq41md42tmm.apps.googleusercontent.com">
   </head>
 
   <body class="text-center">
@@ -100,6 +101,7 @@
               <!-- uso el onclick para llamar la funcion que valida y pasa a la página index -->
             </div>
             <!-- cosas extras del inicio de sesión pero que no son funcionales -->
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
             <div class="text-center p-t-12">
               <span class="txt1"> ¿Olvidaste tu </span>
               <a class="txt2" href="#"> nombre de usuario / contraseña? </a>
@@ -113,6 +115,7 @@
       </div>
     </div>
     <!-- scripts del proyecto -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="js/init.js"></script>
     <script src="js/login.js"></script>
   </body>

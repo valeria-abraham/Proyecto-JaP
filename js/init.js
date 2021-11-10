@@ -61,6 +61,7 @@ function showName() {
     <a class="dropdown-item" style="color:#fff" href="cart.html">Mi carrito</a>
     <div class="dropdown-divider"></div>
     <button class="dropdown-item btn-tomato" type="button" onclick="logOut()">Cerrar sesión</button>
+    <a href="#" onclick="signOut();">Sign out</a>
   </div>
 </div>`;
 
@@ -86,6 +87,13 @@ function logOut() {
   localStorage.clear(); // limpiamos el localStorage
   window.location.href = "index.html"; // mandamos devuelta a la página del login
 }
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los

@@ -2,6 +2,7 @@ const MONEDA = "UYU"; // Defino la moneda con la que quiero trabajar
 var carrito = []; // Para cargar los productos en el carrito
 var carrito_length = 0;
 var card = [];
+var costo_total = 0;
 
 function showCarrito(carrito) {
   // Función que muestra los productos en el carrito
@@ -123,6 +124,7 @@ function showTotal() {
   }
   let envio = shipping(); // Dejo el valor de premium hasta la siguiente entrega
   let total_total = total + total * envio; // Calculo el total entero, subtotal de los artículos más el costo de envío
+  costo_total = total_total;
   html_art =
     `<p class="mt-2" style="text-align:end; font-size: 1.5em;">` +
     total +
@@ -253,7 +255,7 @@ function validatePayment() {
     </div>
   </div>`;
     document.getElementById("payment-alert").innerHTML = html;
-    return 0
+    return 0;
   } else {
     html = `<div class="row mt-2">
     <div class="col-sm-12 col-md-12 col-lg-12">
@@ -266,7 +268,7 @@ function validatePayment() {
     </div>
   </div>`;
     document.getElementById("payment-alert").innerHTML = html;
-    return 1
+    return 1;
   }
 }
 
@@ -321,7 +323,8 @@ function validation() {
     calle != "" &&
     num != "" &&
     esq != "" &&
-    pais != ""
+    pais != "" &&
+    costo_total != 0
   ) {
     // Si se completaron todos los datos requeridos mostramos que la compra se realizó con éxito
     html = `<div class="row mt-2">
